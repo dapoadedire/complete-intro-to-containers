@@ -1,7 +1,10 @@
 FROM node:20
 
-USER node
-COPY index.js /home/node/code/index.js
+RUN useradd -ms /bin/bash lolcat
+
+USER lolcat
+
+COPY index.js /home/lolcat/code/index.js
 
 
-CMD ["node", "/home/node/code/index.js"]
+CMD ["node", "/home/lolcat/code/index.js"]
