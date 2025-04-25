@@ -100,3 +100,13 @@ docker run my-image
 ```
 docker run --init --publish 3000:3000 --rm --name na my-node-app:2
 ```
+
+```
+docker exec -it na bash
+```
+
+```
+ps aux
+```
+
+```
