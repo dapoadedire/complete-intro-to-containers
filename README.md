@@ -2,6 +2,7 @@
 
 [Course Website Notes](https://containers-v2.holt.courses/)
 
+[Project Files Repository](https://github.com/btholt/project-files-for-complete-intro-to-containers-v2)
 
 ## Notes
 
@@ -84,4 +85,16 @@ docker kill <container_id>
 
 ```
 docker run -it --rm node:20
+```
+
+
+
+```
+docker build . --tag my-image
+```
+
+```
+docker run my-image
+```
+
 ```
