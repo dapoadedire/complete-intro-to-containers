@@ -3,7 +3,7 @@
 FROM node:20 AS node-builder
 RUN mkdir /build
 WORKDIR /build
-COPY --chown=node:node package.json package-lock.json ./
+COPY package*.json ./
 RUN npm ci
 COPY  . .
 
