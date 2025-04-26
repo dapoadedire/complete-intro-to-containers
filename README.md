@@ -110,3 +110,18 @@ ps aux
 ```
 
 ```
+
+
+```
+docker run -it -p 8080:8080 --name my-app --rm --init more-complicated-app 
+<!-- this command starts a new container for the more-complicated-app application 
+explaining all the flags used:
+- `-it`: Runs the container in interactive mode with a TTY.
+- `-p 8080:8080`: Maps port 8080 of the host to port 8080 of the container.
+- `--name my-app`: Names the container "my-app".
+- `--rm`: Automatically removes the container when it exits.
+- `--init`: Uses an init system to manage processes inside the container.
+- `more-complicated-app`: The name of the image to run.
+- `--name my-app`: Names the container "my-app".
+- `--rm`: Automatically removes the container when it exits.
+-->

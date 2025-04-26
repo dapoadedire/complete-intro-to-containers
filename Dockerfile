@@ -5,7 +5,8 @@ RUN useradd -ms /bin/bash lolcat
 USER node
 WORKDIR /home/node/code
 
-COPY --chown=node index.js .
+COPY --chown=node . .
 
+RUN npm ci
 
 CMD ["node", "index.js"]
