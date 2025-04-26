@@ -9,9 +9,12 @@ COPY  . .
 
 
 # production step
-FROM alpine:3.19
-RUN apk add --no-cache nodejs
-RUN addgroup -S node && adduser -S node -G node
+FROM debian:bullseye-slim
+RUN apt-get update && apt-get install -y curl && \
+    curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
+    apt-get install -y nodejs
+
+RUN addgroup --system node && adduser --system --ingroup node node
 USER node
 RUN mkdir -p /home/node/code
 WORKDIR /home/node/code
