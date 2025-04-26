@@ -1,0 +1,27 @@
+{
+  "name": "complete-intro-to-containers",
+  "version": "1.0.0",
+  "description": "[Complete Intro to Containers](https://frontendmasters.com/courses/complete-intro-containers-v2)",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dapoadedire/complete-intro-to-containers.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/dapoadedire/complete-intro-to-containers/issues"
+  },
+  "homepage": "https://github.com/dapoadedire/complete-intro-to-containers#readme",
+  "dependencies": {
+    "fastify": "^5.3.2",
+    "nodemon": "^3.1.10"
+  }
+}
