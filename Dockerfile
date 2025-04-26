@@ -1,12 +1,12 @@
-# build stage
-FROM node:20 AS node-builder
-WORKDIR /build
-COPY package-lock.json package.json ./
-RUN npm ci
-COPY . .
+# build step
 
-# runtime stage
-FROM gcr.io/distroless/nodejs20
-COPY --from=node-builder --chown=node:node /build /app
+FROM node:20 AS node-builder
 WORKDIR /app
-CMD ["index.js"]
+COPY package.json package-lock.json ./
+RUN npm ci
+COPY  . .
+RUN npm run build
+
+# you could totally use nginx:alpine here too
+FROM nginx:latest
+COPY --from=node-builder /app/dist /usr/share/nginx/html
