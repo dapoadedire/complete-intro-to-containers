@@ -1,17 +1,20 @@
-FROM alpine:3.19
+# build step
 
-RUN apk add --no-cache nodejs npm
-RUN addgroup -S node && adduser -S node -G node
-
-USER node
-
-WORKDIR /home/node/code
-
+FROM node:20 AS node-builder
+RUN mkdir /build
+WORKDIR /build
 COPY --chown=node:node package.json package-lock.json ./
-
 RUN npm ci
+COPY  . .
 
-COPY --chown=node:node . .
 
+# production step
+FROM alpine:3.19
+RUN apk add --no-cache nodejs
+RUN addgroup -S node && adduser -S node -G node
+USER node
+RUN mkdir -p /home/node/code
+WORKDIR /home/node/code
+COPY --from=node-builder --chown=node:node /build .
 EXPOSE 8080
 CMD ["node", "index.js"]
