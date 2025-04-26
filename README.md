@@ -125,3 +125,8 @@ explaining all the flags used:
 - `--name my-app`: Names the container "my-app".
 - `--rm`: Automatically removes the container when it exits.
 -->
+```
+
+```
+docker run -it -P --name my-app --rm --init more-complicated-app 
+<!-- you use -P when you want to publish all exposed ports to random ports on the host -->

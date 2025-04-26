@@ -6,6 +6,7 @@ USER node
 WORKDIR /home/node/code
 
 COPY --chown=node . .
+EXPOSE 8080
 
 RUN npm ci
 
