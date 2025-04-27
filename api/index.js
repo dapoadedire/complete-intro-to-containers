@@ -1,3 +1,4 @@
+const cors = require("@fastify/cors");
 const fastify = require("fastify")({ logger: true });
 const { MongoClient } = require("mongodb");
 const url = process.env.MONGO_CONNECTION_STRING || "mongodb://localhost:27017";
@@ -5,6 +6,10 @@ const dbName = "dockerApp";
 const collectionName = "count";
 
 async function start() {
+  await fastify.register(cors, {
+    origin: "*",
+  });
+
   const client = await MongoClient.connect(url);
   const db = client.db(dbName);
   const collection = db.collection(collectionName);
@@ -24,7 +29,6 @@ async function start() {
       fastify.log.error(err);
       process.exit(1);
     }
-    fastify.log.info(`Server listening on ${fastify.server.address().port}`);
   });
 }
 

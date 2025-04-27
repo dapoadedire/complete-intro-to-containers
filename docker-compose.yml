@@ -1,0 +1,43 @@
+version: "3.8"
+
+services:
+  api:
+    build: ./api
+    ports:
+      - "8080:8080"
+    environment:
+      MONGO_CONNECTION_STRING: mongodb://mongodb_user:mongodb_password@db:27017/mondogb?authSource=admin
+
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+  db:
+    image: mongo:7
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: mondogb
+      MONGO_INITDB_ROOT_USERNAME: mongodb_user
+      MONGO_INITDB_ROOT_PASSWORD: mongodb_password
+    volumes:
+      - ./mongo-data:/data/db
+    restart: unless-stopped
+    networks:
+      - app-network
+
+  web:
+    build: ./web
+    ports:
+      - "8081:80"
+    environment:
+      API_URL: http://api:8080
+    depends_on:
+      - api
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
